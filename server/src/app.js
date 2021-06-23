@@ -10,9 +10,9 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-app.get('/status', (req, res)=>{
+app.post('/register', (req, res)=>{
     res.send({
-        message: 'hello cc'
+        message: `Hello ${req.body.email}! Your email was register! Have fun!`
     })
 })
 app.listen(process.env.PORT || 8081)

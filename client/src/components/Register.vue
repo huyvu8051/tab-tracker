@@ -1,16 +1,32 @@
 <template>
-    <div>
-        <h1>Register</h1>
-        <input type="email" name="email" v-model="email" id="email" />
-        <input
-            type="password"
-            name="password"
-            v-model="password"
-            id="password"
-        />
-        <div class="error" v-html="error"></div>
-        <button @click="register" type="submit">Register</button>
-    </div>
+    <v-form>
+    <v-container>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
+          <v-text-field
+            label="Regular"
+            outlined
+          ></v-text-field>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
+          <v-text-field
+            label="Outlined"
+            placeholder="Placeholder"
+            outlined
+          ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-form>
 </template>
 
 <script>
@@ -42,4 +58,5 @@ export default {
 .error {
     color: red;
 }
+
 </style>

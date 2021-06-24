@@ -1,6 +1,7 @@
 <template>
     <v-form>
     <v-container>
+      <div class="title">Register Form</div>
       <v-row>
         <v-col
           cols="12"
@@ -8,8 +9,8 @@
           md="3"
         >
           <v-text-field
-            label="Regular"
-            outlined
+            label="Email"
+            v-model="email"
           ></v-text-field>
         </v-col>
 
@@ -19,12 +20,21 @@
           md="3"
         >
           <v-text-field
-            label="Outlined"
-            placeholder="Placeholder"
-            outlined
+            label="Password"
+            v-model="password"
           ></v-text-field>
         </v-col>
+        <v-col
+          cols="12"
+          sm="12"
+          md="3"
+        >
+          <v-btn @click="register">
+            Register
+          </v-btn>
+        </v-col>
       </v-row>
+      <div class="error">{{error}}</div>
     </v-container>
   </v-form>
 </template>

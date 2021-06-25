@@ -1,12 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Artist = sequelize.define('Artist', {
-    id: {
-      primaryKey: true,
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
+    id:{
+      type: DataTypes.UUID,
+      primaryKey: true
     },
     name: DataTypes.STRING
   })
-
   return Artist
 }

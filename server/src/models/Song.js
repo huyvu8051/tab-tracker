@@ -1,9 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Song = sequelize.define('Song', {
-    id: {
-        primaryKey: true,
-        autoIncrement: true,
-        type: DataTypes.INTEGER
+    id:{
+        type: DataTypes.UUID,
+        primaryKey: true
     },
     title: DataTypes.STRING,
     genre: DataTypes.STRING,
@@ -13,6 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     lyrics: DataTypes.TEXT,
     tab: DataTypes.TEXT
   })
-
   return Song
 }

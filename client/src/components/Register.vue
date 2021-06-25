@@ -1,7 +1,6 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <panel title="Register">
         <form 
           name="tab-tracker-form"
           autocomplete="off">
@@ -26,7 +25,6 @@
           @click="register">
           Register
         </v-btn>
-      </panel>
     </v-flex>
   </v-layout>
 </template>
@@ -45,15 +43,11 @@ export default {
   methods: {
     async register () {
       try {
-        const response = await AuthenticationService.register({
+        const result = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({
-          name: 'songs'
-        })
+        console.log(result)
       } catch (error) {
         this.error = error.response.data.error
       }

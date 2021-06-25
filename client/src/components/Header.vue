@@ -5,7 +5,7 @@
         class="home"
         tag="span"
         :to="{
-          name: 'songs'
+          name: 'home'
         }">
         TabTracker
       </router-link>
@@ -16,9 +16,9 @@
         flat 
         dark
         :to="{
-          name: 'songs'
+          name: 'home'
         }">
-        Browse
+        Trang chu
       </v-btn>
     </v-toolbar-items>
 
@@ -26,7 +26,6 @@
 
     <v-toolbar-items>
       <v-btn 
-        v-if="!$store.state.isUserLoggedIn"
         flat 
         dark
         :to="{
@@ -36,7 +35,6 @@
       </v-btn>
       
       <v-btn 
-        v-if="!$store.state.isUserLoggedIn"
         flat 
         dark
         :to="{
@@ -46,7 +44,6 @@
       </v-btn>
       
       <v-btn 
-        v-if="$store.state.isUserLoggedIn"
         flat 
         dark
         @click="logout">
@@ -60,11 +57,6 @@
 export default {
   methods: {
     logout () {
-      this.$store.dispatch('setToken', null)
-      this.$store.dispatch('setUser', null)
-      this.$router.push({
-        name: 'songs'
-      })
     }
   }
 }

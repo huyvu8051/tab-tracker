@@ -7,7 +7,7 @@
         :to="{
           name: 'home'
         }">
-        TabTracker
+        Eshop
       </router-link>
     </v-toolbar-title>
 
@@ -18,7 +18,15 @@
         :to="{
           name: 'home'
         }">
-        Trang chu
+        Trang chủ
+      </v-btn>
+      <v-btn 
+        flat 
+        dark
+        :to="{
+          name: 'songs'
+        }">
+        Danh Sách
       </v-btn>
     </v-toolbar-items>
 
@@ -26,28 +34,39 @@
 
     <v-toolbar-items>
       <v-btn 
+        v-if="!$store.state.isUserLoggedIn"
         flat 
         dark
         :to="{
           name: 'login'
         }">
-        Login
+        Đăng nhập
       </v-btn>
       
       <v-btn 
+        v-if="!$store.state.isUserLoggedIn"
         flat 
         dark
         :to="{
           name: 'register'
         }">
-        Sign Up
+        Đăng kí
       </v-btn>
       
       <v-btn 
+        v-if="$store.state.isUserLoggedIn"
+        flat 
+        dark
+        @click="userDetail"
+        >
+        Xin chào {{email}}
+      </v-btn>
+      <v-btn 
+        v-if="$store.state.isUserLoggedIn"
         flat 
         dark
         @click="logout">
-        Log Out
+        Đăng xuất
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -55,8 +74,21 @@
 
 <script>
 export default {
+  data () {
+    return {
+      email: ''
+    }
+  },
   methods: {
     logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'home'
+      })
+    },
+    userDetail () {
+      console.log('this is userDetail')
     }
   }
 }

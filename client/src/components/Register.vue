@@ -1,6 +1,7 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
+      <panel title="Đăng kí" class="white elevation-2">
         <form 
           name="tab-tracker-form"
           autocomplete="off">
@@ -23,16 +24,20 @@
           dark
           class="cyan"
           @click="register">
-          Register
+          Đăng kí
         </v-btn>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-
+import Panel from '@/components/Panel'
 export default {
+  components: {
+    Panel
+    },
   data () {
     return {
       email: '',
@@ -43,11 +48,13 @@ export default {
   methods: {
     async register () {
       try {
-        const result = await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
-        console.log(result)
+        console.log(response.token)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }

@@ -24,5 +24,14 @@ fs
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+
+db.Songs = require('./Song')
+db.Artists = require('./Artist')
+
+db.Artists.hasMany(db.Songs, {as: 'songs'})
+db.Songs.belongsTo(db.Artists, {
+    foreignKey: 'artistId',
+    as: 'artist'
+})
 console.log('dir: ', __dirname)
 module.exports = db

@@ -1,11 +1,10 @@
-const {Song, Artist} = require('../models')
+const {Artist} = require('../models')
 
 module.exports = {
   async findAll (req, res) {
     try {
-      const songs = await Song.findAll({ include: Artist })
-      res.send(songs)
-      console.log(songs)
+      const artists = await Artist.findAll()
+      res.send(artists)
     } catch (err) {
       console.log('============get all songs err:', err)
       res.status(400).send({
@@ -13,14 +12,11 @@ module.exports = {
       })
     }
   },
-
-// ==== create ====
-
   async create (req, res) {
     try {
-      const song = await Song.create(req.body)
-      res.send(song)
-      console.log('created====',song)
+      const artist = await Artist.create(req.body)
+      res.send(artist)
+      console.log('created====',artist)
     } catch (err) {
       console.log('============create song err:', err)
       res.status(400).send({

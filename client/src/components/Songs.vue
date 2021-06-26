@@ -2,10 +2,36 @@
     <v-layout column>
         <v-flex xs6 offset-xs3>
             <panel title="Danh sách">
+                <v-btn
+                    slot="action"
+                    @click="navigateTo({
+                        name: 'songs-create'
+                    })"
+                    class="cyan accent-2"
+                    light
+                    absolute
+                    right
+                    middle
+                    fab>
+                    <v-icon>add</v-icon>
+                </v-btn>
                 <div v-for="(song, index) in songs" :key="index">
-                    title: {{song.title}}
-                    artist: {{song.artist}}
-                    albumn: {{song.albumn}}
+                    <v-layout>
+                        <v-flex xs6>
+                            <div class="song-id">
+                                title: {{song.id}}
+                            </div>
+                            <div class="song-title">
+                                title: {{song.title}}
+                            </div>
+                            <div class="song-artist">
+                                Artist id: {{song.Artist.id}}
+                            </div>
+                        </v-flex>
+                        <v-flex xs6>
+                            
+                        </v-flex>
+                    </v-layout>
                 </div>
             </panel>
         </v-flex>
@@ -25,7 +51,14 @@ export default {
          }
      },
      async mounted () {
-         this.songs = await SongService.getAllSong()
+         const res = await SongService.getAllSong()
+         this.songs = res.data
+         console.log(this.songs)
+     },
+     methods: {
+         navigateTo (route) {
+             this.$router.push(route)
+         }
      }
 }
 </script>
